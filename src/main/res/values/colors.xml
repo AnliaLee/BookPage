@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#02A8F3</color>
+    <color name="colorPrimaryDark">#2095F2</color>
+    <color name="colorPrimaryTranslucent">#2002A8F3</color>
+    <color name="colorAccent">#02A8F3</color>
+    <color name="colorAccentTranslucent">#2002A8F3</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="red">#F34235</color>
+    <color name="red_light">#FF80AB</color>
+
+    <color name="green">#4BAE4F</color>
+    <color name="green_light">#689F38</color>
+
+    <color name="blue">#2095F2</color>
+    <color name="blue_light">#02A8F3</color>
+    <color name="blue_translucent_dark">#8002A8F3</color>
+    <color name="blue_translucent_light">#882095F2</color>
+
+    <color name="yellow">#FEC006</color>
+    <color name="yellow_light">#FEEA3A</color>
+    <color name="yellow_dark">#ff6200</color>
+
+    <color name="gray">#D0D0D0</color>
+    <color name="gray_dark">#303030</color>
+    <color name="gray_light">#909090</color>
+
+    <color name="gray_bg">#E7E7E7</color>
+    <color name="gray_line">#EFEFF4</color>
+    <color name="gray_content">#606060</color>
+
+    <!--覆层-->
+    <color name="light_translucent">#20000000</color>
+    <color name="dark_translucent">#88000000</color>
+    <color name="white_translucent">#99FFFFFF</color>
+
+    <!--渐变-->
+    <color name="shadow_end_color">#03000000</color>
+    <color name="shadow_start_color">#37000000</color>
+
+    <color name="light">#800de6e8</color>
+
+</resources>
