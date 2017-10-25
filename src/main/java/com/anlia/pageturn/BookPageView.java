@@ -11,6 +11,8 @@ import android.graphics.PorterDuffXfermode;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
+import android.widget.Scroller;
 
 /**
  * Created by anlia on 2017/10/19.
@@ -37,6 +39,12 @@ public class BookPageView extends View {
     private int viewWidth;
     private int viewHeight;
 
+    private Scroller mScroller;
+
+    private String style;
+    public static final String STYLE_LEFT = "STYLE_LEFT";//点击左边区域
+    public static final String STYLE_RIGHT = "STYLE_RIGHT";//点击右边区域
+    public static final String STYLE_MIDDLE = "STYLE_MIDDLE";//点击中间区域
     public static final String STYLE_TOP_RIGHT = "STYLE_TOP_RIGHT";//f点在右上角
     public static final String STYLE_LOWER_RIGHT = "STYLE_LOWER_RIGHT";//f点在右下角
 
@@ -87,6 +95,9 @@ public class BookPageView extends View {
         pathA = new Path();
         pathB = new Path();
         pathC = new Path();
+
+        style = STYLE_LOWER_RIGHT;
+        mScroller = new Scroller(context,new LinearInterpolator());
     }
 
     @Override
@@ -162,6 +173,40 @@ public class BookPageView extends View {
         canvas.drawText("i",i.x,i.y,pointPaint);*/
     }
 
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            float x = mScroller.getCurrX();
+            float y = mScroller.getCurrY();
+            if(style.equals(STYLE_TOP_RIGHT)){
+                setTouchPoint(x,y,STYLE_TOP_RIGHT);
+            }else {
+                setTouchPoint(x,y,STYLE_LOWER_RIGHT);
+            }
+            if (mScroller.getFinalX() == x && mScroller.getFinalY() == y){
+                setDefaultPath();
+            }
+//            postInvalidate();
+        }
+//        super.computeScroll();
+    }
+
+    /**
+     * 取消翻页动画,计算滑动位置与时间
+     */
+    public void startCancelAnim(){
+        int dx,dy;
+        //让a滑动到f点所在位置，留出1像素是为了防止当a和f重叠时出现View闪烁的情况
+        if(style.equals(STYLE_TOP_RIGHT)){
+            dx = (int) (viewWidth-1-a.x);
+            dy = (int) (1-a.y);
+        }else {
+            dx = (int) (viewWidth-1-a.x);
+            dy = (int) (viewHeight-1-a.y);
+        }
+        mScroller.startScroll((int) a.x, (int) a.y, dx, dy, 400);
+    }
+
     /**
      * 设置触摸点
      * @param x
@@ -169,28 +214,72 @@ public class BookPageView extends View {
      * @param style
      */
     public void setTouchPoint(float x, float y, String style){
+        MyPoint touchPoint = new MyPoint();
+        a.x = x;
+        a.y = y;
+        this.style = style;
         switch (style){
             case STYLE_TOP_RIGHT:
                 f.x = viewWidth;
                 f.y = 0;
+                calcPointsXY(a,f);
+                touchPoint = new MyPoint(x,y);
+                if(calcPointCX(touchPoint,f)<0){//如果c点x坐标小于0则重新测量a点坐标
+                    calcPointAByTouchPoint();
+                    calcPointsXY(a,f);
+                }
+                postInvalidate();
+                break;
+            case STYLE_LEFT:
+            case STYLE_RIGHT:
+                a.y = viewHeight-1;
+                f.x = viewWidth;
+                f.y = viewHeight;
+                calcPointsXY(a,f);
+                postInvalidate();
                 break;
             case STYLE_LOWER_RIGHT:
                 f.x = viewWidth;
                 f.y = viewHeight;
+                calcPointsXY(a,f);
+                touchPoint = new MyPoint(x,y);
+                if(calcPointCX(touchPoint,f)<0){//如果c点x坐标小于0则重新测量a点坐标
+                    calcPointAByTouchPoint();
+                    calcPointsXY(a,f);
+                }
+                postInvalidate();
                 break;
             default:
                 break;
         }
-        //如果大于0则设置a点坐标重新计算各标识点位置，否则a点坐标不变
-        MyPoint touchPoint = new MyPoint(x,y);
-        if(calcPointCX(touchPoint,f)>0){
+        /*MyPoint touchPoint = new MyPoint(x,y);
+        if(calcPointCX(touchPoint,f)>=0){
             a.x = x;
             a.y = y;
             calcPointsXY(a,f);
         }else {
+            a.x = x;
+            a.y = y;
             calcPointsXY(a,f);
-        }
-        postInvalidate();
+            calcPointAByTouchPoint();
+            calcPointsXY(a,f);
+        }*/
+//        postInvalidate();
+    }
+
+    /**
+     * 如果c点x坐标小于0,根据触摸点重新测量a点坐标
+     */
+    private void calcPointAByTouchPoint(){
+        float w0 = viewWidth - c.x;
+
+        float w1 = Math.abs(f.x - a.x);
+        float w2 = viewWidth * w1 / w0;
+        a.x = Math.abs(f.x - w2);
+
+        float h1 = Math.abs(f.y - a.y);
+        float h2 = w2 * h1 / w1;
+        a.y = Math.abs(f.y - h2);
     }
 
     /**
