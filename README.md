@@ -9,3 +9,10 @@
 ![](http://upload-images.jianshu.io/upload_images/4909537-730f29ca7e9b4c67.gif?imageMogr2/auto-orient/strip)
 
 ***
+
+* 教程博客：[Android自定义View——从零开始实现书籍翻页效果（二）](http://www.jianshu.com/p/7cd7f61ab878)
+
+* 效果展示：
+
+![](http://upload-images.jianshu.io/upload_images/4909537-d9c7073f88be27bc.gif?imageMogr2/auto-orient/strip)
+***
