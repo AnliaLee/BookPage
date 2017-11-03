@@ -24,3 +24,19 @@
 ![](http://upload-images.jianshu.io/upload_images/4909537-713d9c3b9667afd0.gif?imageMogr2/auto-orient/strip)
 
 ***
+
+* 教程博客：[Android自定义View——从零开始实现书籍翻页效果（四）](http://www.jianshu.com/p/3d81ca0b8fc8)
+* 简介：**绘制翻页阴影**
+* 效果展示：
+
+![](http://upload-images.jianshu.io/upload_images/4909537-9b47efdd22ff14bf.gif?imageMogr2/auto-orient/strip)
+
+***
+
+* 教程博客：[Android自定义View——从零开始实现书籍翻页效果（性能优化篇）](http://www.jianshu.com/p/821dc477bbc3)
+* 简介：**进行性能优化**
+* 效果展示：
+
+![](http://upload-images.jianshu.io/upload_images/4909537-e52587b5b998da62.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+***
