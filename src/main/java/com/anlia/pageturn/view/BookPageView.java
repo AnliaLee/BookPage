@@ -1,4 +1,4 @@
-package com.anlia.pageturn;
+package com.anlia.pageturn.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,18 +8,18 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Region;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Trace;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
+
+import com.anlia.pageturn.R;
+import com.anlia.pageturn.bean.MyPoint;
 
 /**
  * Created by anlia on 2017/10/19.

@@ -1,4 +1,4 @@
-package com.anlia.pageturn;
+package com.anlia.pageturn.bean;
 
 /**
  * Created by anlia on 2017/10/19.
