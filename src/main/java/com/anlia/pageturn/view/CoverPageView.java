@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -14,7 +13,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
 import com.anlia.pageturn.bean.MyPoint;
-import com.anlia.pageturn.decoder.PageFactory;
+import com.anlia.pageturn.factory.PageFactory;
 import com.anlia.pageturn.utils.ViewUtils;
 
 /**

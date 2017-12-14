@@ -1,4 +1,4 @@
-package com.anlia.pageturn.decoder;
+package com.anlia.pageturn.factory;
 
 import android.content.Context;
 import android.graphics.Bitmap;
